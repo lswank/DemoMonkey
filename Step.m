@@ -67,9 +67,9 @@ static NSString *TableSummaryKey = @"TableSummary";
 - (instancetype)initWithCoder:(NSCoder *)coder {
     
     if (self = [super init]) {
-        body = [[coder decodeObjectForKey:BodyKey] retain];    
-        tooltip = [[coder decodeObjectForKey:ToolTipKey] retain];    
-        tableSummary = [[coder decodeObjectForKey:TableSummaryKey] retain];    
+        body = [coder decodeObjectForKey:BodyKey];    
+        tooltip = [coder decodeObjectForKey:ToolTipKey];    
+        tableSummary = [coder decodeObjectForKey:TableSummaryKey];    
     }
     return self;
 }
@@ -138,10 +138,8 @@ NSString *StepUTI = @"com.yourcompany.demomonkey.step";
     self = [self init];
     if (self) {
         if ([type isEqualToString:NSPasteboardTypeString]) {
-            [body release];
             body = [propertyList copy];
         } else {
-            [self release];
             return nil;
         }
     }
@@ -165,24 +163,21 @@ NSString *StepUTI = @"com.yourcompany.demomonkey.step";
 - (void)setBody:(NSString *)newBody {
     if (body != newBody) {
         [undoManager registerUndoWithTarget:self selector:@selector(setBody:) object:body];
-        [body release];
-        body = [newBody retain];
+        body = newBody;
     }
 }
 
 - (void)setTableSummary:(NSString *)newTableSummary {
     if (tableSummary != newTableSummary) {
         [undoManager registerUndoWithTarget:self selector:@selector(setTableSummary:) object:tableSummary];
-        [tableSummary release];
-        tableSummary = [newTableSummary retain];
+        tableSummary = newTableSummary;
     }
 }
 
 - (void)setTooltip:(NSString *)newTooltip {
     if (tooltip != newTooltip) {
         [undoManager registerUndoWithTarget:self selector:@selector(setTooltip:) object:tooltip];
-        [tooltip release];
-        tooltip = [newTooltip retain];
+        tooltip = newTooltip;
     }
 }
 
@@ -201,12 +196,6 @@ NSString *StepUTI = @"com.yourcompany.demomonkey.step";
 }
 
 
-- (void)dealloc {
-    [body release];
-    [tooltip release];
-    [tableSummary release];
-    [super dealloc];
-}
 
 
 @end

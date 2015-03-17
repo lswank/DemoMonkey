@@ -54,12 +54,12 @@ extern NSString *StepUTI;
     NSString *tableSummary;
     NSString *body;
     NSString *tooltip;
-    NSUndoManager *undoManager;
+    NSUndoManager *__weak undoManager;
 }
 
-@property (nonatomic, retain) NSString *tableSummary;
-@property (nonatomic, retain) NSString *body;
-@property (nonatomic, retain) NSString *tooltip;
-@property (nonatomic, assign) NSUndoManager *undoManager;
+@property (nonatomic, strong) NSString *tableSummary;
+@property (nonatomic, strong) NSString *body;
+@property (nonatomic, strong) NSString *tooltip;
+@property (nonatomic, weak) NSUndoManager *undoManager;
 
 @end

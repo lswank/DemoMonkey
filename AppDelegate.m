@@ -137,13 +137,6 @@ NSString *DMKDisplayToolTipsKey = @"displayToolTips";
 }
 
 
-#pragma mark -
-#pragma mark Memory management
-
-- (void)dealloc {
-    [preferencesController release];
-    [super dealloc];
-}
 
 
 @end

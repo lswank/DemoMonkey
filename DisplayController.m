@@ -234,7 +234,6 @@ static const NSString *windowAlphaContext;
 - (void) dealloc {
     NSUserDefaultsController *udc = [NSUserDefaultsController sharedUserDefaultsController];
     [udc removeObserver:self forKeyPath:[@"values." stringByAppendingString:DMKDisplayWindowAlphaKey]];
-    [super dealloc];    
 }
 
 @end

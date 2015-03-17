@@ -48,12 +48,12 @@
  */
 
 @interface EditController : NSWindowController {
-    NSTableView *tableView;
-    NSArrayController *arrayController;
+    NSTableView *__weak tableView;
+    NSArrayController *__weak arrayController;
 }
 
-@property (assign) IBOutlet NSTableView *tableView;
-@property (assign) IBOutlet NSArrayController *arrayController;
+@property (weak) IBOutlet NSTableView *tableView;
+@property (weak) IBOutlet NSArrayController *arrayController;
 
 - (IBAction)paste:sender;
 - (IBAction)add:sender;

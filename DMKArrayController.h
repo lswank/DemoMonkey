@@ -51,12 +51,12 @@
 @class EditController;
 
 @interface DMKArrayController : NSArrayController {
-    NSTableView *tableView;
-    EditController *windowController;
+    NSTableView *__weak tableView;
+    EditController *__weak windowController;
 }
 
-@property (assign) IBOutlet NSTableView *tableView;
-@property (assign) IBOutlet EditController *windowController;
+@property (weak) IBOutlet NSTableView *tableView;
+@property (weak) IBOutlet EditController *windowController;
 
 
 // Table view drag and drop support.

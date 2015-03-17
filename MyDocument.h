@@ -54,11 +54,11 @@
 
 @interface MyDocument : NSDocument {
     NSMutableArray *steps;    
-    DisplayController *displayController;
+    DisplayController *__weak displayController;
 }
 
-@property (nonatomic, assign) DisplayController *displayController;
-@property (nonatomic, assign, readonly) EditController *editController;
+@property (nonatomic, weak) DisplayController *displayController;
+@property (nonatomic, weak, readonly) EditController *editController;
 
 // Services actions
 @property (readonly, copy) NSString *textForCurrentSelectionAndAdvance;

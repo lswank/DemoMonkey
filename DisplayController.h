@@ -48,12 +48,12 @@
  */
 
 @interface DisplayController : NSWindowController <NSTableViewDelegate> {
-    NSArrayController *arrayController;
-    NSTableView *tableView;
+    NSArrayController *__weak arrayController;
+    NSTableView *__weak tableView;
 }
 
-@property (assign) IBOutlet NSArrayController *arrayController;
-@property (assign) IBOutlet NSTableView *tableView;
+@property (weak) IBOutlet NSArrayController *arrayController;
+@property (weak) IBOutlet NSTableView *tableView;
 
 @property (readonly, copy) NSString *textForCurrentSelectionAndAdvance;
 - (void)rewind;

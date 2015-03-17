@@ -171,7 +171,6 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
     [self insertObject:newObject atArrangedObjectIndex:row];
     [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
     [tableView editColumn:0 row:row withEvent:nil select:YES];
-    [newObject release];
 }
 
 
@@ -196,10 +195,9 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
             removeIndex = idx;
             insertIndex -= 1;
         }
-        object = [objects[removeIndex] retain];
+        object = objects[removeIndex];
         [self removeObjectAtArrangedObjectIndex:removeIndex];
         [self insertObject:object atArrangedObjectIndex:insertIndex];
-        [object release];
         idx = [indexSet indexLessThanIndex:idx];
     }
 }

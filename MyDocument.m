@@ -128,7 +128,6 @@
     [aDisplayController showWindow:self];
     [self addWindowController:aDisplayController];
     self.displayController = aDisplayController;
-    [aDisplayController release];
 }
 
 
@@ -142,7 +141,6 @@
     if ([myWindowControllers count] == 1) {
         editController = [[EditController alloc] initWithWindowNibName:@"Edit"];
         [self addWindowController:editController];
-        [editController release];
         // Position the edit window atop the display window.
         NSRect frame = [[displayController window] frame];
         NSPoint topLeft = frame.origin;
@@ -199,7 +197,6 @@
 
 - (void)setSteps:(NSArray *)aSteps {
     if (steps != aSteps) {
-        [steps release];
         steps = [aSteps mutableCopy];
     }
 }
@@ -217,10 +214,6 @@
 
 
 
-- (void)dealloc {
-    [steps release];
-    [super dealloc];
-}
 
 
 @end
