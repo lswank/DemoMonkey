@@ -64,7 +64,7 @@ static NSString *ToolTipKey = @"ToolTip";
 static NSString *TableSummaryKey = @"TableSummary";
 
 
-- (id)initWithCoder:(NSCoder *)coder {
+- (instancetype)initWithCoder:(NSCoder *)coder {
     
     if (self = [super init]) {
         body = [[coder decodeObjectForKey:BodyKey] retain];    
@@ -133,7 +133,7 @@ NSString *StepUTI = @"com.yourcompany.demomonkey.step";
 }
 
 
-- (id)initWithPasteboardPropertyList:(id)propertyList ofType:(NSString *)type {
+- (instancetype)initWithPasteboardPropertyList:(id)propertyList ofType:(NSString *)type {
     
     self = [self init];
     if (self) {
@@ -190,7 +190,7 @@ NSString *StepUTI = @"com.yourcompany.demomonkey.step";
 #pragma mark -
 #pragma mark Object lifecycle
 
--(id)init {
+-(instancetype)init {
     self = [super init];
     if (self) {    
         body = @"";

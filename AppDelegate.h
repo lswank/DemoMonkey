@@ -56,7 +56,7 @@ extern NSString *DMKDisplayToolTipsKey;
     NSWindowController *preferencesController;
 }
 
-- (MyDocument *)mainDocument;
+@property (readonly, strong) MyDocument *mainDocument;
 @property (nonatomic, retain) NSWindowController *preferencesController;
 
 - (void)getNextLine:(NSPasteboard *)pboard userData:(NSString *)data error:(NSString **)error;

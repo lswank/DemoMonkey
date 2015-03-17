@@ -61,7 +61,7 @@
 @property (nonatomic, assign, readonly) EditController *editController;
 
 // Services actions
-- (NSString *)textForCurrentSelectionAndAdvance;
+@property (readonly, copy) NSString *textForCurrentSelectionAndAdvance;
 - (void)rewind;
 - (void)moveUpOneLine;
 - (void)moveDownOneLine;
@@ -70,12 +70,11 @@
 - (IBAction)editSteps:sender;
 
 // Steps collection accessor methods
-- (NSUInteger)countOfSteps;
+@property (readonly) NSUInteger countOfSteps;
 - (id)objectInStepsAtIndex:(NSUInteger)idx;
 - (void)insertObject:(id)anObject inStepsAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromStepsAtIndex:(NSUInteger)idx;
 - (void)replaceObjectInStepsAtIndex:(NSUInteger)idx withObject:(id)anObject;
-- (NSArray *)steps;
-- (void)setSteps:(NSArray *)aSteps;
+@property (copy) NSArray *steps;
 
 @end

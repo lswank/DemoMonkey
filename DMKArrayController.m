@@ -66,7 +66,7 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
 
 - (void)awakeFromNib {
     // Register the table view for drag and drop.
-    [tableView registerForDraggedTypes:[NSArray arrayWithObjects:StepUTI, MovedRowsUTI, NSStringPboardType, nil]];
+    [tableView registerForDraggedTypes:@[StepUTI, MovedRowsUTI, NSStringPboardType]];
     [tableView setAllowsMultipleSelection:YES];
     [tableView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
 }
@@ -84,7 +84,7 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
     [pboard writeObjects:[[self arrangedObjects] objectsAtIndexes:rowIndexes]];
 
     // Add rows array for a local move.
-    [pboard addTypes:[NSArray arrayWithObject:MovedRowsUTI] owner:self];        
+    [pboard addTypes:@[MovedRowsUTI] owner:self];        
     NSData *rowIndexesData = [NSArchiver archivedDataWithRootObject:rowIndexes];
     [pboard setData:rowIndexesData forType:MovedRowsUTI];        
     
@@ -138,8 +138,8 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
     /*
      If the dragging source is something other than our table view, create new steps from whatever's on the pasteboard and add them.
      */
-    NSDictionary *options = [NSDictionary dictionary];
-    NSArray *newSteps = [[info draggingPasteboard] readObjectsForClasses:[NSArray arrayWithObject:[Step class]] options:options];
+    NSDictionary *options = @{};
+    NSArray *newSteps = [[info draggingPasteboard] readObjectsForClasses:@[[Step class]] options:options];
     if (newSteps == nil) {
         return NO;
     }
@@ -196,7 +196,7 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
             removeIndex = idx;
             insertIndex -= 1;
         }
-        object = [[objects objectAtIndex:removeIndex] retain];
+        object = [objects[removeIndex] retain];
         [self removeObjectAtArrangedObjectIndex:removeIndex];
         [self insertObject:object atArrangedObjectIndex:insertIndex];
         [object release];

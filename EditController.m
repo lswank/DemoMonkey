@@ -65,8 +65,8 @@
     if ([anItem action] == @selector(paste:)) {
         
         NSPasteboard * generalPasteboard = [NSPasteboard generalPasteboard];
-        NSDictionary *options = [NSDictionary dictionary];
-        return [generalPasteboard canReadObjectForClasses:[NSArray arrayWithObject:[Step class]] options:options];
+        NSDictionary *options = @{};
+        return [generalPasteboard canReadObjectForClasses:@[[Step class]] options:options];
     }
     return [[self document] validateUserInterfaceItem:anItem];
 }
@@ -78,9 +78,9 @@
      Create new steps from the pasteboard; add them to the array controller; then select the new rows.
      */
     NSPasteboard * generalPasteboard = [NSPasteboard generalPasteboard];
-    NSDictionary *options = [NSDictionary dictionary];
+    NSDictionary *options = @{};
     
-    NSArray *newSteps = [generalPasteboard readObjectsForClasses:[NSArray arrayWithObject:[Step class]] options:options];
+    NSArray *newSteps = [generalPasteboard readObjectsForClasses:@[[Step class]] options:options];
     
     NSInteger insertionPoint = [[arrayController arrangedObjects] count];
     NSRange range = NSMakeRange(insertionPoint, [newSteps count]);

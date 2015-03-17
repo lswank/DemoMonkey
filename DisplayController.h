@@ -55,7 +55,7 @@
 @property (assign) IBOutlet NSArrayController *arrayController;
 @property (assign) IBOutlet NSTableView *tableView;
 
--(NSString *)textForCurrentSelectionAndAdvance;
+@property (readonly, copy) NSString *textForCurrentSelectionAndAdvance;
 - (void)rewind;
 - (void)moveUpOneLine;
 - (void)moveDownOneLine;

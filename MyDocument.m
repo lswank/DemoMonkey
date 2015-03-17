@@ -84,14 +84,14 @@
 
 - (void)createNewStep:(NSPasteboard *)pboard userData:(NSString *)data error:(NSString **)error {
     
-    NSArray *newSteps = [pboard readObjectsForClasses:[NSArray arrayWithObject:[Step class]] options:[NSDictionary dictionary]];
+    NSArray *newSteps = [pboard readObjectsForClasses:@[[Step class]] options:@{}];
     
     if ([newSteps count] != 1) {
         *error = NSLocalizedString(@"Couldn't create a step", @"Service error message");
         return;
     }
     
-    Step *newStep = [newSteps objectAtIndex:0];    
+    Step *newStep = newSteps[0];    
     NSUInteger currentStepCount = [self countOfSteps];    
     newStep.tableSummary = [NSString stringWithFormat:@"Step %@", @(currentStepCount)];
     newStep.undoManager = [self undoManager];
@@ -150,7 +150,7 @@
         [[editController window] setFrameTopLeftPoint:topLeft];
     }
     else {
-        editController = [myWindowControllers objectAtIndex:1];
+        editController = myWindowControllers[1];
     }
     
     return editController;
@@ -171,7 +171,7 @@
 }
 
 - (id)objectInStepsAtIndex:(NSUInteger)idx {
-    return [steps objectAtIndex:idx];
+    return steps[idx];
 }
 
 - (void)insertObject:(id)anObject inStepsAtIndex:(NSUInteger)idx {
@@ -190,7 +190,7 @@
     
     id oldObject = [self objectInStepsAtIndex:idx];
     [[[self undoManager] prepareWithInvocationTarget:self] replaceObjectInStepsAtIndex:idx withObject:oldObject];
-    [steps replaceObjectAtIndex:idx withObject:anObject];
+    steps[idx] = anObject;
 }
 
 - (NSArray *)steps {
@@ -208,7 +208,7 @@
 #pragma mark -
 #pragma mark Object lifecycle
 
-- init {
+- (instancetype) init {
     if (self = [super init]) {
         steps = [[NSMutableArray alloc] init];
     }
