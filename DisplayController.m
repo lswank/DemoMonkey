@@ -53,20 +53,16 @@
 
 @implementation DisplayController
 
-
-@synthesize arrayController, tableView;
-
-
 #pragma mark -
 #pragma mark Services methods
 
 -(NSString *)textForCurrentSelectionAndAdvance {
     
     NSString *string = nil;
-    NSUInteger selectedRow = [arrayController selectionIndex];
+    NSUInteger selectedRow = [self.arrayController selectionIndex];
     
     if (selectedRow != NSNotFound) {
-        Step *step = (Step *)[[arrayController arrangedObjects] objectAtIndex:selectedRow];
+        Step *step = (Step *)[self.arrayController arrangedObjects][selectedRow];
         string = step.body;
         if (string == nil) {
             string = @"";
@@ -81,30 +77,30 @@
 
 
 - (void)rewind {
-    [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
-    [tableView scrollRowToVisible:0];
+    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
+    [self.tableView scrollRowToVisible:0];
 }
 
 
 - (void)moveUpOneLine {
-    NSUInteger selectedRow = [arrayController selectionIndex];
+    NSUInteger selectedRow = [self.arrayController selectionIndex];
     if ((selectedRow > 0) && (selectedRow != NSNotFound)) {
-        [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:(selectedRow -1)] byExtendingSelection:NO];
-        [tableView scrollRowToVisible:(selectedRow -1)];
+        [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:(selectedRow -1)] byExtendingSelection:NO];
+        [self.tableView scrollRowToVisible:(selectedRow -1)];
     }
 }
 
 
 - (void)moveDownOneLine {
     
-    NSUInteger selectedRow = [arrayController selectionIndex];
+    NSUInteger selectedRow = [self.arrayController selectionIndex];
     if (selectedRow == NSNotFound) {
         return;
     }
     selectedRow++;
-    if (selectedRow < [[arrayController arrangedObjects] count]) {
-        [arrayController setSelectionIndex:selectedRow];    
-        [tableView scrollRowToVisible:selectedRow];
+    if (selectedRow < [[self.arrayController arrangedObjects] count]) {
+        [self.arrayController setSelectionIndex:selectedRow];
+        [self.tableView scrollRowToVisible:selectedRow];
     }
 }
 
@@ -118,7 +114,7 @@
     
     if ([[[[NSUserDefaultsController sharedUserDefaultsController]
         values] valueForKey:DMKDisplayToolTipsKey] boolValue]) {
-        Step *step = (Step *)[[arrayController arrangedObjects] objectAtIndex:row];
+        Step *step = (Step *)[self.arrayController arrangedObjects][row];
         return step.tooltip;
     }
     return nil;
@@ -129,8 +125,8 @@
     
     // For convenience, automatically write the row to the pasteboard then make sure the next row is displayed, ready for the next selection.
     BOOL ok = [self writeRow:rowIndex toPasteboard:[NSPasteboard generalPasteboard]];
-    if (ok && (rowIndex < [[arrayController arrangedObjects] count] -1)) {
-        [self performSelector:@selector(scrollTableViewToRow:) withObject:[NSNumber numberWithInteger:(rowIndex+1)] afterDelay:0.1];
+    if (ok && (rowIndex < [[self.arrayController arrangedObjects] count] -1)) {
+        [self performSelector:@selector(scrollTableViewToRow:) withObject:@(rowIndex+1) afterDelay:0.1];
     }
     return ok;
 }
@@ -144,8 +140,8 @@
     }
     
     NSInteger row = [rowIndexes firstIndex];
-    if (row < [[arrayController arrangedObjects] count] -1) {
-        [self performSelector:@selector(scrollTableViewToRow:) withObject:[NSNumber numberWithInteger:(row+1)] afterDelay:0.1];
+    if (row < [[self.arrayController arrangedObjects] count] -1) {
+        [self performSelector:@selector(scrollTableViewToRow:) withObject:@(row+1) afterDelay:0.1];
     }
     return [self writeRow:row toPasteboard:pboard];
 }
@@ -171,7 +167,7 @@
 #pragma mark Scroll to view
 
 - (void)scrollTableViewToRow:(NSNumber *)row {
-    [tableView scrollRowToVisible:[row integerValue]];    
+    [self.tableView scrollRowToVisible:[row integerValue]];
 }
 
 
@@ -181,14 +177,14 @@
 - (BOOL)writeRow:(NSInteger)row toPasteboard:(NSPasteboard*)pboard {
     
     // For the display window, just write the selected step's body, not the complete step.
-    Step *step = (Step *)[[arrayController arrangedObjects] objectAtIndex:row];
+    Step *step = (Step *)[self.arrayController arrangedObjects][row];
     NSString *stepBody = step.body;
     if (stepBody == nil) {
         return NO;
     }
     
     [pboard clearContents];
-    [pboard writeObjects:[NSArray arrayWithObject:stepBody]];
+    [pboard writeObjects:@[stepBody]];
     return YES;
 }
 
@@ -206,7 +202,7 @@ static const NSString *windowAlphaContext;
 - (void)windowDidLoad {
     
     [super windowDidLoad];
-    [tableView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
+    [self.tableView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
     
     NSUserDefaultsController *udc = [NSUserDefaultsController sharedUserDefaultsController];
     
@@ -234,7 +230,6 @@ static const NSString *windowAlphaContext;
 - (void) dealloc {
     NSUserDefaultsController *udc = [NSUserDefaultsController sharedUserDefaultsController];
     [udc removeObserver:self forKeyPath:[@"values." stringByAppendingString:DMKDisplayWindowAlphaKey]];
-    [super dealloc];    
 }
 
 @end

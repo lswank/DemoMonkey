@@ -52,13 +52,10 @@
 @class DisplayController;
 @class EditController;
 
-@interface MyDocument : NSDocument {
-    NSMutableArray *steps;    
-    DisplayController *displayController;
-}
+@interface MyDocument : NSDocument 
 
-@property (nonatomic, assign) DisplayController *displayController;
-@property (nonatomic, assign, readonly) EditController *editController;
+@property (nonatomic, weak) DisplayController *displayController;
+@property (nonatomic, weak, readonly) EditController *editController;
 
 // Services actions
 - (NSString *)textForCurrentSelectionAndAdvance;
@@ -67,15 +64,14 @@
 - (void)moveDownOneLine;
 - (void)createNewStep:(NSPasteboard *)pboard userData:(NSString *)data error:(NSString **)error;
 
-- (IBAction)editSteps:sender;
+- (IBAction)editSteps:(id)sender;
 
 // Steps collection accessor methods
-- (NSUInteger)countOfSteps;
+@property (readonly) NSUInteger countOfSteps;
 - (id)objectInStepsAtIndex:(NSUInteger)idx;
 - (void)insertObject:(id)anObject inStepsAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromStepsAtIndex:(NSUInteger)idx;
 - (void)replaceObjectInStepsAtIndex:(NSUInteger)idx withObject:(id)anObject;
-- (NSArray *)steps;
-- (void)setSteps:(NSArray *)aSteps;
+@property (copy) NSArray *steps;
 
 @end

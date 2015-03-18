@@ -58,17 +58,14 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
 @implementation DMKArrayController
 
 
-@synthesize tableView, windowController;
-
-
 #pragma mark -
 #pragma mark Pasteboard / drag and drop support
 
 - (void)awakeFromNib {
     // Register the table view for drag and drop.
-    [tableView registerForDraggedTypes:[NSArray arrayWithObjects:StepUTI, MovedRowsUTI, NSStringPboardType, nil]];
-    [tableView setAllowsMultipleSelection:YES];
-    [tableView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
+    [self.tableView registerForDraggedTypes:@[StepUTI, MovedRowsUTI, NSStringPboardType]];
+    [self.tableView setAllowsMultipleSelection:YES];
+    [self.tableView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
 }
 
 
@@ -84,7 +81,7 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
     [pboard writeObjects:[[self arrangedObjects] objectsAtIndexes:rowIndexes]];
 
     // Add rows array for a local move.
-    [pboard addTypes:[NSArray arrayWithObject:MovedRowsUTI] owner:self];        
+    [pboard addTypes:@[MovedRowsUTI] owner:self];        
     NSData *rowIndexesData = [NSArchiver archivedDataWithRootObject:rowIndexes];
     [pboard setData:rowIndexesData forType:MovedRowsUTI];        
     
@@ -98,7 +95,7 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
     NSDragOperation dragOp = NSDragOperationCopy;
     
     // If drag source is self, it's a move.
-    if ([info draggingSource] == tableView) {
+    if ([info draggingSource] == self.tableView) {
         dragOp =  NSDragOperationMove;
     }
     
@@ -118,7 +115,7 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
     /*
      If the dragging source is our table view, look for the moved rows type for a reorder operation.
      */
-    if ([info draggingSource] == tableView) {
+    if ([info draggingSource] == self.tableView) {
         
         NSData *rowsData = [[info draggingPasteboard] dataForType:MovedRowsUTI];
         NSIndexSet  *indexSet = [NSUnarchiver unarchiveObjectWithData:rowsData];        
@@ -138,8 +135,8 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
     /*
      If the dragging source is something other than our table view, create new steps from whatever's on the pasteboard and add them.
      */
-    NSDictionary *options = [NSDictionary dictionary];
-    NSArray *newSteps = [[info draggingPasteboard] readObjectsForClasses:[NSArray arrayWithObject:[Step class]] options:options];
+    NSDictionary *options = @{};
+    NSArray *newSteps = [[info draggingPasteboard] readObjectsForClasses:@[[Step class]] options:options];
     if (newSteps == nil) {
         return NO;
     }
@@ -159,19 +156,18 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
     Step *newObject = [super newObject];
     NSUInteger row = [[self arrangedObjects] count];
     newObject.tableSummary = [NSString stringWithFormat:@"Step %@", @(row +1)];
-    newObject.undoManager = [[windowController document] undoManager];
+    newObject.undoManager = [[self.windowController document] undoManager];
     return newObject;
 }
 
 
-- (void)add:sender {
+- (void)add:(id)sender {
     // Add a new object, then select its row.
     Step *newObject = [self newObject];
     NSUInteger row = [[self arrangedObjects] count];
     [self insertObject:newObject atArrangedObjectIndex:row];
-    [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
-    [tableView editColumn:0 row:row withEvent:nil select:YES];
-    [newObject release];
+    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+    [self.tableView editColumn:0 row:row withEvent:nil select:YES];
 }
 
 
@@ -196,10 +192,9 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
             removeIndex = idx;
             insertIndex -= 1;
         }
-        object = [[objects objectAtIndex:removeIndex] retain];
+        object = objects[removeIndex];
         [self removeObjectAtArrangedObjectIndex:removeIndex];
         [self insertObject:object atArrangedObjectIndex:insertIndex];
-        [object release];
         idx = [indexSet indexLessThanIndex:idx];
     }
 }

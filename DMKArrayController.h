@@ -50,13 +50,10 @@
 @class Step;
 @class EditController;
 
-@interface DMKArrayController : NSArrayController {
-    NSTableView *tableView;
-    EditController *windowController;
-}
+@interface DMKArrayController : NSArrayController
 
-@property (assign) IBOutlet NSTableView *tableView;
-@property (assign) IBOutlet EditController *windowController;
+@property (weak) IBOutlet NSTableView *tableView;
+@property (weak) IBOutlet EditController *windowController;
 
 
 // Table view drag and drop support.

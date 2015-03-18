@@ -64,12 +64,12 @@ static NSString *ToolTipKey = @"ToolTip";
 static NSString *TableSummaryKey = @"TableSummary";
 
 
-- (id)initWithCoder:(NSCoder *)coder {
+- (instancetype)initWithCoder:(NSCoder *)coder {
     
     if (self = [super init]) {
-        body = [[coder decodeObjectForKey:BodyKey] retain];    
-        tooltip = [[coder decodeObjectForKey:ToolTipKey] retain];    
-        tableSummary = [[coder decodeObjectForKey:TableSummaryKey] retain];    
+        body = [coder decodeObjectForKey:BodyKey];    
+        tooltip = [coder decodeObjectForKey:ToolTipKey];    
+        tableSummary = [coder decodeObjectForKey:TableSummaryKey];    
     }
     return self;
 }
@@ -133,15 +133,13 @@ NSString *StepUTI = @"com.yourcompany.demomonkey.step";
 }
 
 
-- (id)initWithPasteboardPropertyList:(id)propertyList ofType:(NSString *)type {
+- (instancetype)initWithPasteboardPropertyList:(id)propertyList ofType:(NSString *)type {
     
     self = [self init];
     if (self) {
         if ([type isEqualToString:NSPasteboardTypeString]) {
-            [body release];
             body = [propertyList copy];
         } else {
-            [self release];
             return nil;
         }
     }
@@ -165,24 +163,21 @@ NSString *StepUTI = @"com.yourcompany.demomonkey.step";
 - (void)setBody:(NSString *)newBody {
     if (body != newBody) {
         [undoManager registerUndoWithTarget:self selector:@selector(setBody:) object:body];
-        [body release];
-        body = [newBody retain];
+        body = newBody;
     }
 }
 
 - (void)setTableSummary:(NSString *)newTableSummary {
     if (tableSummary != newTableSummary) {
         [undoManager registerUndoWithTarget:self selector:@selector(setTableSummary:) object:tableSummary];
-        [tableSummary release];
-        tableSummary = [newTableSummary retain];
+        tableSummary = newTableSummary;
     }
 }
 
 - (void)setTooltip:(NSString *)newTooltip {
     if (tooltip != newTooltip) {
         [undoManager registerUndoWithTarget:self selector:@selector(setTooltip:) object:tooltip];
-        [tooltip release];
-        tooltip = [newTooltip retain];
+        tooltip = newTooltip;
     }
 }
 
@@ -190,7 +185,7 @@ NSString *StepUTI = @"com.yourcompany.demomonkey.step";
 #pragma mark -
 #pragma mark Object lifecycle
 
--(id)init {
+-(instancetype)init {
     self = [super init];
     if (self) {    
         body = @"";
@@ -201,12 +196,6 @@ NSString *StepUTI = @"com.yourcompany.demomonkey.step";
 }
 
 
-- (void)dealloc {
-    [body release];
-    [tooltip release];
-    [tableSummary release];
-    [super dealloc];
-}
 
 
 @end

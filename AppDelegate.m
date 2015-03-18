@@ -58,8 +58,6 @@ NSString *DMKDisplayToolTipsKey = @"displayToolTips";
 
 @implementation AppDelegate
 
-@synthesize preferencesController;
-
 #pragma mark -
 #pragma mark Services
 
@@ -78,7 +76,7 @@ NSString *DMKDisplayToolTipsKey = @"displayToolTips";
     MyDocument *mainDocument = nil;
     
     if ([documents count] > 0) {
-        mainDocument = [documents objectAtIndex:0];
+        mainDocument = documents[0];
     }
     return mainDocument;
 }
@@ -89,7 +87,7 @@ NSString *DMKDisplayToolTipsKey = @"displayToolTips";
     if (mainDocument != nil) {
         NSString *text = [mainDocument textForCurrentSelectionAndAdvance];
         [pboard clearContents];
-        [pboard writeObjects:[NSArray arrayWithObject:text]];
+        [pboard writeObjects:@[text]];
     }
 }
 
@@ -116,9 +114,9 @@ NSString *DMKDisplayToolTipsKey = @"displayToolTips";
 + (void)initialize {    
     NSMutableDictionary *initialValues = [NSMutableDictionary dictionary];
     
-    [initialValues setObject:[NSNumber numberWithBool:YES] forKey:DMKOpenUntitledDocumentOnLaunchKey];
-    [initialValues setObject:[NSNumber numberWithInteger:1] forKey:DMKDisplayWindowAlphaKey];
-    [initialValues setObject:[NSNumber numberWithBool:YES] forKey:DMKDisplayToolTipsKey];
+    initialValues[DMKOpenUntitledDocumentOnLaunchKey] = @YES;
+    initialValues[DMKDisplayWindowAlphaKey] = @1;
+    initialValues[DMKDisplayToolTipsKey] = @YES;
     
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:initialValues];
 }
@@ -129,21 +127,14 @@ NSString *DMKDisplayToolTipsKey = @"displayToolTips";
 }
 
 
-- (IBAction)showPreferences:sender {
-    if (preferencesController == nil) {
-        preferencesController = [[NSWindowController alloc] initWithWindowNibName:@"Preferences"];
+- (IBAction)showPreferences:(id)sender {
+    if (self.preferencesController == nil) {
+        self.preferencesController = [[NSWindowController alloc] initWithWindowNibName:@"Preferences"];
     }
-    [preferencesController showWindow:self];
+    [self.preferencesController showWindow:self];
 }
 
 
-#pragma mark -
-#pragma mark Memory management
-
-- (void)dealloc {
-    [preferencesController release];
-    [super dealloc];
-}
 
 
 @end

@@ -52,18 +52,16 @@
 extern NSString *DMKDisplayWindowAlphaKey;
 extern NSString *DMKDisplayToolTipsKey;
 
-@interface AppDelegate : NSObject {
-    NSWindowController *preferencesController;
-}
+@interface AppDelegate : NSObject
 
-- (MyDocument *)mainDocument;
-@property (nonatomic, retain) NSWindowController *preferencesController;
+@property (readonly, strong) MyDocument *mainDocument;
+@property (nonatomic, strong) NSWindowController *preferencesController;
 
 - (void)getNextLine:(NSPasteboard *)pboard userData:(NSString *)data error:(NSString **)error;
 - (void)rewind:(NSPasteboard *)pboard userData:(NSString *)data error:(NSString **)error;
 - (void)moveDownOneLine:(NSPasteboard *)pboard userData:(NSString *)data error:(NSString **)error;
 - (void)moveUpOneLine:(NSPasteboard *)pboard userData:(NSString *)data error:(NSString **)error;
 
-- (IBAction)showPreferences:sender;
+- (IBAction)showPreferences:(id)sender;
 
 @end
