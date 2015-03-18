@@ -52,7 +52,7 @@
 @property (weak) IBOutlet NSArrayController *arrayController;
 @property (weak) IBOutlet NSTableView *tableView;
 
-@property (readonly, copy) NSString *textForCurrentSelectionAndAdvance;
+- (NSString *)textForCurrentSelectionAndAdvance;
 - (void)rewind;
 - (void)moveUpOneLine;
 - (void)moveDownOneLine;

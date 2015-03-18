@@ -58,7 +58,7 @@
 @property (nonatomic, weak, readonly) EditController *editController;
 
 // Services actions
-@property (readonly, copy) NSString *textForCurrentSelectionAndAdvance;
+- (NSString *)textForCurrentSelectionAndAdvance;
 - (void)rewind;
 - (void)moveUpOneLine;
 - (void)moveDownOneLine;
