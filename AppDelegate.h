@@ -62,6 +62,6 @@ extern NSString *DMKDisplayToolTipsKey;
 - (void)moveDownOneLine:(NSPasteboard *)pboard userData:(NSString *)data error:(NSString **)error;
 - (void)moveUpOneLine:(NSPasteboard *)pboard userData:(NSString *)data error:(NSString **)error;
 
-- (IBAction)showPreferences:sender;
+- (IBAction)showPreferences:(id)sender;
 
 @end

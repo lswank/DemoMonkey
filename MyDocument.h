@@ -64,7 +64,7 @@
 - (void)moveDownOneLine;
 - (void)createNewStep:(NSPasteboard *)pboard userData:(NSString *)data error:(NSString **)error;
 
-- (IBAction)editSteps:sender;
+- (IBAction)editSteps:(id)sender;
 
 // Steps collection accessor methods
 @property (readonly) NSUInteger countOfSteps;

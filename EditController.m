@@ -69,7 +69,7 @@
 }
 
 
-- (IBAction)paste:sender {
+- (IBAction)paste:(id)sender {
     
     /*
      Create new steps from the pasteboard; add them to the array controller; then select the new rows.
@@ -88,7 +88,7 @@
 }
 
 
-- (IBAction)copy:sender {
+- (IBAction)copy:(id)sender {
     
     /*
      Write the selected steps to the pasteboard.
@@ -99,7 +99,7 @@
     [generalPasteboard writeObjects:objects];
 }
 
-- (IBAction)add:sender {
+- (IBAction)add:(id)sender {
     [self.window rsw_endEditing];
     
     [self.arrayController add:sender];

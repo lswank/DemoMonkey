@@ -161,7 +161,7 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
 }
 
 
-- (void)add:sender {
+- (void)add:(id)sender {
     // Add a new object, then select its row.
     Step *newObject = [self newObject];
     NSUInteger row = [[self arrangedObjects] count];

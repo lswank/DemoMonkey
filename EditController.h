@@ -52,7 +52,7 @@
 @property (weak) IBOutlet NSTableView *tableView;
 @property (weak) IBOutlet NSArrayController *arrayController;
 
-- (IBAction)paste:sender;
-- (IBAction)add:sender;
+- (IBAction)paste:(id)sender;
+- (IBAction)add:(id)sender;
 
 @end

@@ -160,7 +160,7 @@
 
 
 
-- (IBAction)editSteps:sender {
+- (IBAction)editSteps:(id)sender {
     [self.editController showWindow:self];
 }
 

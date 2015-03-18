@@ -127,7 +127,7 @@ NSString *DMKDisplayToolTipsKey = @"displayToolTips";
 }
 
 
-- (IBAction)showPreferences:sender {
+- (IBAction)showPreferences:(id)sender {
     if (self.preferencesController == nil) {
         self.preferencesController = [[NSWindowController alloc] initWithWindowNibName:@"Preferences"];
     }
