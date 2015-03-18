@@ -52,9 +52,7 @@
 extern NSString *DMKDisplayWindowAlphaKey;
 extern NSString *DMKDisplayToolTipsKey;
 
-@interface AppDelegate : NSObject {
-    NSWindowController *preferencesController;
-}
+@interface AppDelegate : NSObject
 
 @property (readonly, strong) MyDocument *mainDocument;
 @property (nonatomic, strong) NSWindowController *preferencesController;

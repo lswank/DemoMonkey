@@ -47,10 +47,7 @@
  
  */
 
-@interface DisplayController : NSWindowController <NSTableViewDelegate> {
-    NSArrayController *__weak arrayController;
-    NSTableView *__weak tableView;
-}
+@interface DisplayController : NSWindowController <NSTableViewDelegate>
 
 @property (weak) IBOutlet NSArrayController *arrayController;
 @property (weak) IBOutlet NSTableView *tableView;

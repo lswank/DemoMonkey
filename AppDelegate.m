@@ -58,8 +58,6 @@ NSString *DMKDisplayToolTipsKey = @"displayToolTips";
 
 @implementation AppDelegate
 
-@synthesize preferencesController;
-
 #pragma mark -
 #pragma mark Services
 
@@ -130,10 +128,10 @@ NSString *DMKDisplayToolTipsKey = @"displayToolTips";
 
 
 - (IBAction)showPreferences:sender {
-    if (preferencesController == nil) {
-        preferencesController = [[NSWindowController alloc] initWithWindowNibName:@"Preferences"];
+    if (self.preferencesController == nil) {
+        self.preferencesController = [[NSWindowController alloc] initWithWindowNibName:@"Preferences"];
     }
-    [preferencesController showWindow:self];
+    [self.preferencesController showWindow:self];
 }
 
 

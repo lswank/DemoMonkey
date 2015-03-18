@@ -50,10 +50,7 @@
 @class Step;
 @class EditController;
 
-@interface DMKArrayController : NSArrayController {
-    NSTableView *__weak tableView;
-    EditController *__weak windowController;
-}
+@interface DMKArrayController : NSArrayController
 
 @property (weak) IBOutlet NSTableView *tableView;
 @property (weak) IBOutlet EditController *windowController;

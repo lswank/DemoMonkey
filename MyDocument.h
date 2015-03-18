@@ -52,10 +52,7 @@
 @class DisplayController;
 @class EditController;
 
-@interface MyDocument : NSDocument {
-    NSMutableArray *steps;    
-    DisplayController *__weak displayController;
-}
+@interface MyDocument : NSDocument 
 
 @property (nonatomic, weak) DisplayController *displayController;
 @property (nonatomic, weak, readonly) EditController *editController;

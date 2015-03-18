@@ -54,11 +54,15 @@
 #import "EditController.h"
 #import "Step.h"
 
+@interface MyDocument () {
+    NSMutableArray *_steps;
+}
+
+@end
 
 @implementation MyDocument
 
-
-@synthesize displayController;
+@synthesize steps = _steps;
 
 #pragma mark -
 #pragma mark Services methods
@@ -67,19 +71,19 @@
  Service items apply to the display controller.
  */
 -(NSString *)textForCurrentSelectionAndAdvance {
-    return [displayController textForCurrentSelectionAndAdvance];
+    return [self.displayController textForCurrentSelectionAndAdvance];
 }
 
 - (void)rewind {
-    [displayController rewind];
+    [self.displayController rewind];
 }
 
 - (void)moveUpOneLine {
-    [displayController moveUpOneLine];
+    [self.displayController moveUpOneLine];
 }
 
 - (void)moveDownOneLine {
-    [displayController moveDownOneLine];
+    [self.displayController moveDownOneLine];
 }
 
 - (void)createNewStep:(NSPasteboard *)pboard userData:(NSString *)data error:(NSString **)error {
@@ -113,7 +117,7 @@
 
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError {
-    return [NSKeyedArchiver archivedDataWithRootObject:steps];
+    return [NSKeyedArchiver archivedDataWithRootObject:self.steps];
 }
 
 
@@ -142,9 +146,9 @@
         editController = [[EditController alloc] initWithWindowNibName:@"Edit"];
         [self addWindowController:editController];
         // Position the edit window atop the display window.
-        NSRect frame = [[displayController window] frame];
+        NSRect frame = [[self.displayController window] frame];
         NSPoint topLeft = frame.origin;
-        topLeft.y += [[[displayController window] contentView] frame].size.height;
+        topLeft.y += [[[self.displayController window] contentView] frame].size.height;
         [[editController window] setFrameTopLeftPoint:topLeft];
     }
     else {
@@ -165,39 +169,39 @@
 #pragma mark Steps accessors
 
 - (NSUInteger)countOfSteps {
-    return [steps count];
+    return [self.steps count];
 }
 
 - (id)objectInStepsAtIndex:(NSUInteger)idx {
-    return steps[idx];
+    return self.steps[idx];
 }
 
 - (void)insertObject:(id)anObject inStepsAtIndex:(NSUInteger)idx {
     [[[self undoManager] prepareWithInvocationTarget:self] removeObjectFromStepsAtIndex:idx];        
-    [steps insertObject:anObject atIndex:idx];
+    [_steps insertObject:anObject atIndex:idx];
 }
 
 - (void)removeObjectFromStepsAtIndex:(NSUInteger)idx {
     
     id anObject = [self objectInStepsAtIndex:idx];
     [[[self undoManager] prepareWithInvocationTarget:self] insertObject:anObject inStepsAtIndex:idx];    
-    [steps removeObjectAtIndex:idx];
+    [_steps removeObjectAtIndex:idx];
 }
 
 - (void)replaceObjectInStepsAtIndex:(NSUInteger)idx withObject:(id)anObject {
     
     id oldObject = [self objectInStepsAtIndex:idx];
     [[[self undoManager] prepareWithInvocationTarget:self] replaceObjectInStepsAtIndex:idx withObject:oldObject];
-    steps[idx] = anObject;
+    _steps[idx] = anObject;
 }
 
 - (NSArray *)steps {
-    return steps;
+    return [_steps copy];
 }
 
 - (void)setSteps:(NSArray *)aSteps {
-    if (steps != aSteps) {
-        steps = [aSteps mutableCopy];
+    if (_steps != aSteps) {
+        _steps = [aSteps mutableCopy];
     }
 }
 
@@ -207,7 +211,7 @@
 
 - (instancetype) init {
     if (self = [super init]) {
-        steps = [[NSMutableArray alloc] init];
+        _steps = [[NSMutableArray alloc] init];
     }
     return self;    
 }

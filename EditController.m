@@ -54,9 +54,6 @@
 
 @implementation EditController
 
-@synthesize arrayController, tableView;
-
-
 - (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem {
 
     /*
@@ -82,12 +79,12 @@
     
     NSArray *newSteps = [generalPasteboard readObjectsForClasses:@[[Step class]] options:options];
     
-    NSInteger insertionPoint = [[arrayController arrangedObjects] count];
+    NSInteger insertionPoint = [[self.arrayController arrangedObjects] count];
     NSRange range = NSMakeRange(insertionPoint, [newSteps count]);
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
 
-    [arrayController insertObjects:newSteps atArrangedObjectIndexes:indexSet];
-    [arrayController setSelectionIndexes:indexSet];
+    [self.arrayController insertObjects:newSteps atArrangedObjectIndexes:indexSet];
+    [self.arrayController setSelectionIndexes:indexSet];
 }
 
 
@@ -96,7 +93,7 @@
     /*
      Write the selected steps to the pasteboard.
      */
-    NSArray *objects = [arrayController selectedObjects];
+    NSArray *objects = [self.arrayController selectedObjects];
     NSPasteboard *generalPasteboard = [NSPasteboard generalPasteboard];
     [generalPasteboard clearContents];
     [generalPasteboard writeObjects:objects];

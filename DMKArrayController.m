@@ -58,17 +58,14 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
 @implementation DMKArrayController
 
 
-@synthesize tableView, windowController;
-
-
 #pragma mark -
 #pragma mark Pasteboard / drag and drop support
 
 - (void)awakeFromNib {
     // Register the table view for drag and drop.
-    [tableView registerForDraggedTypes:@[StepUTI, MovedRowsUTI, NSStringPboardType]];
-    [tableView setAllowsMultipleSelection:YES];
-    [tableView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
+    [self.tableView registerForDraggedTypes:@[StepUTI, MovedRowsUTI, NSStringPboardType]];
+    [self.tableView setAllowsMultipleSelection:YES];
+    [self.tableView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
 }
 
 
@@ -98,7 +95,7 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
     NSDragOperation dragOp = NSDragOperationCopy;
     
     // If drag source is self, it's a move.
-    if ([info draggingSource] == tableView) {
+    if ([info draggingSource] == self.tableView) {
         dragOp =  NSDragOperationMove;
     }
     
@@ -118,7 +115,7 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
     /*
      If the dragging source is our table view, look for the moved rows type for a reorder operation.
      */
-    if ([info draggingSource] == tableView) {
+    if ([info draggingSource] == self.tableView) {
         
         NSData *rowsData = [[info draggingPasteboard] dataForType:MovedRowsUTI];
         NSIndexSet  *indexSet = [NSUnarchiver unarchiveObjectWithData:rowsData];        
@@ -159,7 +156,7 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
     Step *newObject = [super newObject];
     NSUInteger row = [[self arrangedObjects] count];
     newObject.tableSummary = [NSString stringWithFormat:@"Step %@", @(row +1)];
-    newObject.undoManager = [[windowController document] undoManager];
+    newObject.undoManager = [[self.windowController document] undoManager];
     return newObject;
 }
 
@@ -169,8 +166,8 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
     Step *newObject = [self newObject];
     NSUInteger row = [[self arrangedObjects] count];
     [self insertObject:newObject atArrangedObjectIndex:row];
-    [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
-    [tableView editColumn:0 row:row withEvent:nil select:YES];
+    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+    [self.tableView editColumn:0 row:row withEvent:nil select:YES];
 }
 
 

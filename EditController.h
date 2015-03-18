@@ -47,10 +47,7 @@
  
  */
 
-@interface EditController : NSWindowController {
-    NSTableView *__weak tableView;
-    NSArrayController *__weak arrayController;
-}
+@interface EditController : NSWindowController
 
 @property (weak) IBOutlet NSTableView *tableView;
 @property (weak) IBOutlet NSArrayController *arrayController;
