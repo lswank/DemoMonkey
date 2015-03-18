@@ -136,7 +136,7 @@ NSString *MovedRowsUTI = @"com.yourcompany.demomonkey.movedrows";
      If the dragging source is something other than our table view, create new steps from whatever's on the pasteboard and add them.
      */
     NSDictionary *options = @{};
-    NSArray *newSteps = [[info draggingPasteboard] readObjectsForClasses:@[[Step class]] options:options];
+    NSArray *newSteps = [[info draggingPasteboard] readObjectsForClasses:@[Step.class] options:options];
     if (newSteps == nil) {
         return NO;
     }

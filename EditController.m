@@ -63,7 +63,7 @@
         
         NSPasteboard * generalPasteboard = [NSPasteboard generalPasteboard];
         NSDictionary *options = @{};
-        return [generalPasteboard canReadObjectForClasses:@[[Step class]] options:options];
+        return [generalPasteboard canReadObjectForClasses:@[Step.class] options:options];
     }
     return [[self document] validateUserInterfaceItem:anItem];
 }
@@ -77,7 +77,7 @@
     NSPasteboard * generalPasteboard = [NSPasteboard generalPasteboard];
     NSDictionary *options = @{};
     
-    NSArray *newSteps = [generalPasteboard readObjectsForClasses:@[[Step class]] options:options];
+    NSArray *newSteps = [generalPasteboard readObjectsForClasses:@[Step.class] options:options];
     
     NSInteger insertionPoint = [[self.arrayController arrangedObjects] count];
     NSRange range = NSMakeRange(insertionPoint, [newSteps count]);

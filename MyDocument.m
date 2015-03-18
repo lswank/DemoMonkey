@@ -88,7 +88,7 @@
 
 - (void)createNewStep:(NSPasteboard *)pboard userData:(NSString *)data error:(NSString **)error {
     
-    NSArray *newSteps = [pboard readObjectsForClasses:@[[Step class]] options:@{}];
+    NSArray *newSteps = [pboard readObjectsForClasses:@[Step.class] options:@{}];
     
     if ([newSteps count] != 1) {
         *error = NSLocalizedString(@"Couldn't create a step", @"Service error message");
