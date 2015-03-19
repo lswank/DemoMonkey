@@ -17,6 +17,7 @@
 		28DABBB80FBF22D500694A30 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 28DABBB70FBF22D500694A30 /* ReadMe.txt */; };
 		28DABBBB0FBF233F00694A30 /* DMKArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DABBBA0FBF233F00694A30 /* DMKArrayController.m */; };
 		4364BBA21ABB0059000F2E76 /* NSKeyedUnarchiver+BNRAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4364BBA11ABB0059000F2E76 /* NSKeyedUnarchiver+BNRAdditions.m */; };
+		4364BBA91ABB20C0000F2E76 /* NSXMLDocument+BNRAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4364BBA81ABB20C0000F2E76 /* NSXMLDocument+BNRAdditions.m */; };
 		4383A90F1AB6246600084CF2 /* NSWindow+RSWGracefulEndEditingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383A90E1AB6246600084CF2 /* NSWindow+RSWGracefulEndEditingAdditions.m */; };
 		4383A9131AB62C9300084CF2 /* Step+XMLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383A9121AB62C9300084CF2 /* Step+XMLAdditions.m */; };
 		696661D41AB61CDC0054CC80 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 696661D31AB61CDC0054CC80 /* Images.xcassets */; };
@@ -53,6 +54,8 @@
 		32DBCF750370BD2300C91783 /* DemoMonkey_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoMonkey_Prefix.pch; sourceTree = "<group>"; };
 		4364BBA01ABB0059000F2E76 /* NSKeyedUnarchiver+BNRAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSKeyedUnarchiver+BNRAdditions.h"; sourceTree = "<group>"; };
 		4364BBA11ABB0059000F2E76 /* NSKeyedUnarchiver+BNRAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSKeyedUnarchiver+BNRAdditions.m"; sourceTree = "<group>"; };
+		4364BBA71ABB20C0000F2E76 /* NSXMLDocument+BNRAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSXMLDocument+BNRAdditions.h"; sourceTree = "<group>"; };
+		4364BBA81ABB20C0000F2E76 /* NSXMLDocument+BNRAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSXMLDocument+BNRAdditions.m"; sourceTree = "<group>"; };
 		4383A90D1AB6246500084CF2 /* NSWindow+RSWGracefulEndEditingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+RSWGracefulEndEditingAdditions.h"; sourceTree = "<group>"; };
 		4383A90E1AB6246600084CF2 /* NSWindow+RSWGracefulEndEditingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+RSWGracefulEndEditingAdditions.m"; sourceTree = "<group>"; };
 		4383A9111AB62C9300084CF2 /* Step+XMLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Step+XMLAdditions.h"; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 				4383A90E1AB6246600084CF2 /* NSWindow+RSWGracefulEndEditingAdditions.m */,
 				4364BBA01ABB0059000F2E76 /* NSKeyedUnarchiver+BNRAdditions.h */,
 				4364BBA11ABB0059000F2E76 /* NSKeyedUnarchiver+BNRAdditions.m */,
+				4364BBA71ABB20C0000F2E76 /* NSXMLDocument+BNRAdditions.h */,
+				4364BBA81ABB20C0000F2E76 /* NSXMLDocument+BNRAdditions.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4364BBA91ABB20C0000F2E76 /* NSXMLDocument+BNRAdditions.m in Sources */,
 				8D15AC310486D014006FF6A4 /* MyDocument.m in Sources */,
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
 				4383A9131AB62C9300084CF2 /* Step+XMLAdditions.m in Sources */,
