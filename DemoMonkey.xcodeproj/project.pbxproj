@@ -17,6 +17,7 @@
 		28DABBB80FBF22D500694A30 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 28DABBB70FBF22D500694A30 /* ReadMe.txt */; };
 		28DABBBB0FBF233F00694A30 /* DMKArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DABBBA0FBF233F00694A30 /* DMKArrayController.m */; };
 		4383A90F1AB6246600084CF2 /* NSWindow+RSWGracefulEndEditingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383A90E1AB6246600084CF2 /* NSWindow+RSWGracefulEndEditingAdditions.m */; };
+		4383A9131AB62C9300084CF2 /* Step+XMLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383A9121AB62C9300084CF2 /* Step+XMLAdditions.m */; };
 		696661D41AB61CDC0054CC80 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 696661D31AB61CDC0054CC80 /* Images.xcassets */; };
 		775DFF38067A968500C5B868 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
@@ -51,6 +52,8 @@
 		32DBCF750370BD2300C91783 /* DemoMonkey_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoMonkey_Prefix.pch; sourceTree = "<group>"; };
 		4383A90D1AB6246500084CF2 /* NSWindow+RSWGracefulEndEditingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+RSWGracefulEndEditingAdditions.h"; sourceTree = "<group>"; };
 		4383A90E1AB6246600084CF2 /* NSWindow+RSWGracefulEndEditingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+RSWGracefulEndEditingAdditions.m"; sourceTree = "<group>"; };
+		4383A9111AB62C9300084CF2 /* Step+XMLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Step+XMLAdditions.h"; sourceTree = "<group>"; };
+		4383A9121AB62C9300084CF2 /* Step+XMLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Step+XMLAdditions.m"; sourceTree = "<group>"; };
 		696661D31AB61CDC0054CC80 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = DemoMonkey/Images.xcassets; sourceTree = "<group>"; };
 		7788DA0506752A1600599AAD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -189,6 +192,8 @@
 			children = (
 				28B2AF1C080F91AA00403FAE /* Step.h */,
 				28B2AF1D080F91AA00403FAE /* Step.m */,
+				4383A9111AB62C9300084CF2 /* Step+XMLAdditions.h */,
+				4383A9121AB62C9300084CF2 /* Step+XMLAdditions.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 			files = (
 				8D15AC310486D014006FF6A4 /* MyDocument.m in Sources */,
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
+				4383A9131AB62C9300084CF2 /* Step+XMLAdditions.m in Sources */,
 				28B2AE25080F575700403FAE /* DisplayController.m in Sources */,
 				28B2AE26080F575700403FAE /* EditController.m in Sources */,
 				28B2AF1E080F91AA00403FAE /* Step.m in Sources */,
