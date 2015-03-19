@@ -116,8 +116,6 @@
 		28EB618D0FB8A38F00739008 /* Application Delegate */ = {
 			isa = PBXGroup;
 			children = (
-				289915950818FD6700EA8C28 /* AppDelegate.h */,
-				289915960818FD6700EA8C28 /* AppDelegate.m */,
 			);
 			name = "Application Delegate";
 			sourceTree = "<group>";
@@ -125,6 +123,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* DemoMonkey */ = {
 			isa = PBXGroup;
 			children = (
+				4364BBA31ABB2006000F2E76 /* Application */,
 				28DABBB70FBF22D500694A30 /* ReadMe.txt */,
 				2A37F4ABFDCFA73011CA2CEA /* Document Controllers */,
 				28EB618D0FB8A38F00739008 /* Application Delegate */,
@@ -182,6 +181,15 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4364BBA31ABB2006000F2E76 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				289915950818FD6700EA8C28 /* AppDelegate.h */,
+				289915960818FD6700EA8C28 /* AppDelegate.m */,
+			);
+			name = Application;
 			sourceTree = "<group>";
 		};
 		4383A90C1AB6241C00084CF2 /* Helpers */ = {
