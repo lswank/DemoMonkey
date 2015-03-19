@@ -73,8 +73,8 @@ mutableDictionary[name] = @((type));   \
     }
     
     if (outError) {
-        NSString *localizedDescription = [NSString stringWithFormat:@"The specified file (%@) could not be read.", url];
-        NSDictionary *userInfo = @{NSLocalizedDescriptionKey : localizedDescription};
+        NSString *informativeErrorAlertText = [NSString stringWithFormat:@"The specified file (%@) could not be read.", url.path];
+        NSDictionary *userInfo = @{NSLocalizedRecoverySuggestionErrorKey : informativeErrorAlertText};
         NSError *error = [NSError errorWithDomain:DocumentControllerErrorDomain
                                              code:DocumentControllerErrorCodeUnparseable
                                          userInfo:userInfo];
