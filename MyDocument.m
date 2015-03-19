@@ -209,15 +209,11 @@
 #pragma mark -
 #pragma mark Object lifecycle
 
-- (instancetype) init {
+- (instancetype)init {
     if (self = [super init]) {
         _steps = [[NSMutableArray alloc] init];
     }
     return self;    
 }
-
-
-
-
 
 @end
