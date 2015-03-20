@@ -59,7 +59,7 @@ mutableDictionary[name] = @((type));   \
     //    - Nate 2015.03.18
     
     NSData *data = [NSData dataWithContentsOfURL:url
-                                         options:0
+                                         options:NSDataReadingMappedIfSafe
                                            error:outError];
     if (!data) {
         return nil;
