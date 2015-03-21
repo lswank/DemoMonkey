@@ -53,6 +53,7 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* DemoMonkey_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoMonkey_Prefix.pch; sourceTree = "<group>"; };
+		434843AC1ABDFE0E0049EB4E /* BNRAttributeMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNRAttributeMacros.h; sourceTree = "<group>"; };
 		4364BBA01ABB0059000F2E76 /* NSKeyedUnarchiver+BNRAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSKeyedUnarchiver+BNRAdditions.h"; sourceTree = "<group>"; };
 		4364BBA11ABB0059000F2E76 /* NSKeyedUnarchiver+BNRAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSKeyedUnarchiver+BNRAdditions.m"; sourceTree = "<group>"; };
 		4364BBA41ABB2025000F2E76 /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
@@ -159,6 +160,7 @@
 			children = (
 				32DBCF750370BD2300C91783 /* DemoMonkey_Prefix.pch */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
+				434843AC1ABDFE0E0049EB4E /* BNRAttributeMacros.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
