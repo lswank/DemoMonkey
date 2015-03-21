@@ -19,8 +19,11 @@ static NSString * __nonnull const StepXMLAdditionsKeyTooltip = @"tooltip";
 - (nonnull NSXMLElement *)XMLElement {
     NSXMLElement *theTableSummaryElement = [NSXMLElement elementWithName:StepXMLAdditionsKeyTableSummary
                                                              stringValue:self.tableSummary];
+    NSXMLNode *bodyText = [[NSXMLNode alloc] initWithKind:NSXMLTextKind options:NSXMLNodeIsCDATA];
+    bodyText.stringValue = self.body;
     NSXMLElement *theBody = [NSXMLElement elementWithName:StepXMLAdditionsKeyBody
-                                              stringValue:self.body];
+                                                 children:@[bodyText]
+                                               attributes:nil];
     NSXMLElement *theTooltip = [NSXMLElement elementWithName:StepXMLAdditionsKeyTooltip
                                                  stringValue:self.tooltip];
     NSXMLElement *result = [NSXMLElement elementWithName:StepXMLAdditionsKeyStep
