@@ -8,15 +8,15 @@
 
 #import "Step+XMLAdditions.h"
 
-NSString * const __nonnull StepXMLAdditionsKeyStep = @"step";
+NSString * const BNR_NONNULL StepXMLAdditionsKeyStep = @"step";
 
-static NSString * __nonnull const StepXMLAdditionsKeyTableSummary = @"tableSummary";
-static NSString * __nonnull const StepXMLAdditionsKeyBody = @"body";
-static NSString * __nonnull const StepXMLAdditionsKeyTooltip = @"tooltip";
+static NSString * BNR_NONNULL const StepXMLAdditionsKeyTableSummary = @"tableSummary";
+static NSString * BNR_NONNULL const StepXMLAdditionsKeyBody = @"body";
+static NSString * BNR_NONNULL const StepXMLAdditionsKeyTooltip = @"tooltip";
 
 @implementation Step (XMLAdditions)
 
-- (nonnull NSXMLElement *)XMLElement {
+- (BNR_NONNULL NSXMLElement *)XMLElement {
     NSXMLElement *theTableSummaryElement = [NSXMLElement elementWithName:StepXMLAdditionsKeyTableSummary
                                                              stringValue:self.tableSummary];
     NSXMLNode *bodyText = [[NSXMLNode alloc] initWithKind:NSXMLTextKind options:NSXMLNodeIsCDATA];
@@ -32,7 +32,7 @@ static NSString * __nonnull const StepXMLAdditionsKeyTooltip = @"tooltip";
     return result;
 }
 
-- (nullable Step *)initWithXMLElement:(nonnull NSXMLElement *)element {
+- (BNR_NULLABLE Step *)initWithXMLElement:(BNR_NONNULL NSXMLElement *)element {
     self = [super init];
     if (self) {
         NSXMLElement *tableSummaryElement = [element elementsForName:StepXMLAdditionsKeyTableSummary].firstObject;

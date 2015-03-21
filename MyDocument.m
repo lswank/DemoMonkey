@@ -149,7 +149,7 @@ typedef NS_ENUM(NSInteger, MyDocumentErrorCode) {
     NSMutableArray *mutableSteps = [[NSMutableArray alloc] init];
     
     for (NSXMLElement *childElement in [root elementsForName:StepXMLAdditionsKeyStep]) {
-        Step * __nullable step = [[Step alloc] initWithXMLElement:childElement];
+        Step * BNR_NULLABLE step = [[Step alloc] initWithXMLElement:childElement];
         if (step) {
             [mutableSteps addObject:step];
         } else {

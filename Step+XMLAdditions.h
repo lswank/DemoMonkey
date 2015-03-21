@@ -8,11 +8,11 @@
 
 #import "Step.h"
 
-extern NSString * __nonnull const StepXMLAdditionsKeyStep;
+extern NSString * BNR_NONNULL const StepXMLAdditionsKeyStep;
 
 @interface Step (XMLAdditions)
 
-- (nonnull NSXMLElement *)XMLElement;
-- (nullable Step *)initWithXMLElement:(nonnull NSXMLElement *)element;
+- (BNR_NONNULL NSXMLElement *)XMLElement;
+- (BNR_NULLABLE Step *)initWithXMLElement:(BNR_NONNULL NSXMLElement *)element;
 
 @end
