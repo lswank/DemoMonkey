@@ -49,14 +49,32 @@
 
 #import "AppDelegate.h"
 #import "MyDocument.h"
-
+#import "DocumentController.h"
 
 static NSString *DMKOpenUntitledDocumentOnLaunchKey = @"openUntitledDocumentOnLaunch";
 NSString *DMKDisplayWindowAlphaKey = @"displayWindowAlpha";
 NSString *DMKDisplayToolTipsKey = @"displayToolTips";
 
+@interface AppDelegate ()
+@property (nonatomic) DocumentController *documentController;
+@end
 
 @implementation AppDelegate
+
+#pragma mark - Lifecycle
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        // This is (all that's) necessary to make DocumentController
+        //   be used instead of NSDocumentController.
+        //   We could just alloc/init it,
+        //   but it is nicer to have a reference to our global object.
+        _documentController = [[DocumentController alloc] init];
+    }
+    return self;
+}
 
 #pragma mark -
 #pragma mark Services

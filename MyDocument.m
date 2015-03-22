@@ -53,6 +53,17 @@
 #import "DisplayController.h"
 #import "EditController.h"
 #import "Step.h"
+#import "Step+XMLAdditions.h"
+#import "NSKeyedUnarchiver+BNRAdditions.h"
+#import "DocumentController.h"
+
+static NSString * const MyDocumentErrorDomain = @"com.bignerdranch.demomonkey.MyDocumentErrorDomain";
+
+typedef NS_ENUM(NSInteger, MyDocumentErrorCode) {
+    MyDocumentErrorCodeNoError = 0,
+    MyDocumentErrorCodeXMLInvalidStep,
+    MyDocumentErrorCodeArchiveInvalid,
+};
 
 @interface MyDocument () {
     NSMutableArray *_steps;
@@ -109,17 +120,137 @@
 #pragma mark Reading and writing file
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
-
-    NSArray *newSteps = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    self.steps = newSteps;
-    return YES;
+    switch (MyDocumentTypeFromMyDocumentTypeName(typeName)) {
+        case MyDocumentTypeXML: {
+            return [self readFromXMLData:data error:outError];
+        } break;
+        case MyDocumentTypeBinaryPlist: {
+            return [self readFromArchiveData:data error:outError];
+        } break;
+        case MyDocumentTypeUnknown: {
+            NSAssert(NO, @"MyDocument tried to open a document of unknown type.  This should have been handled in the DocumentController.  Programmer error!");
+            __builtin_unreachable();
+        }
+    }
 }
 
+- (BOOL)readFromXMLData:(NSData *)data error:(NSError **)outError
+{
+    BOOL success = NO;
+    NSError *error = nil;
+    NSArray *steps = nil;
+    
+    NSError *parseXMLError = nil;
+    NSXMLDocument *document = [[NSXMLDocument alloc] initWithData:data options:0 error:&parseXMLError];
+    NSXMLElement *root = document.rootElement;
+    
+    NSError *addError = nil;
+    
+    NSMutableArray *mutableSteps = [[NSMutableArray alloc] init];
+    
+    for (NSXMLElement *childElement in [root elementsForName:StepXMLAdditionsKeyStep]) {
+        Step * BNR_NULLABLE step = [[Step alloc] initWithXMLElement:childElement];
+        if (step) {
+            [mutableSteps addObject:step];
+        } else {
+            NSDictionary *userInfo = @{NSLocalizedRecoverySuggestionErrorKey : @"Invalid XML file!  Found a step which could not be initialized."};
+            addError = [NSError errorWithDomain:MyDocumentErrorDomain
+                                           code:MyDocumentErrorCodeXMLInvalidStep
+                                       userInfo:userInfo];
+            mutableSteps = nil;
+            break;
+        }
+    }
+    
+    if (mutableSteps) {
+        success = YES;
+        error = nil;
+        steps = [mutableSteps copy];
+    } else {
+        success = NO;
+        error = addError;
+        steps = nil;
+    }
+    
+    self.steps = steps;
+    if (outError) {
+        *outError = error;
+    }
+    return success;
+}
+
+- (BOOL)readFromArchiveData:(NSData *)data error:(NSError **)outError
+{
+    BOOL success = NO;
+    NSError *error = nil;
+    NSArray *steps = nil;
+    
+    NSError *unarchiveError = nil;
+    id unarchivedSteps =  [NSKeyedUnarchiver bnr_unarchiveObjectWithData:data
+                                                                   error:&unarchiveError
+                                                              errorMaker:^(NSException * exception) {
+                                                                  NSDictionary *userInfo = @{NSLocalizedRecoverySuggestionErrorKey : @"Invalid archive!"};
+                                                                  NSError *result = [NSError errorWithDomain:MyDocumentErrorDomain
+                                                                                                        code:MyDocumentErrorCodeArchiveInvalid
+                                                                                                    userInfo:userInfo];
+                                                                  return result;
+                                                              }];
+    
+    if (!!unarchivedSteps) {
+        success = YES;
+        error = nil;
+        steps = unarchivedSteps;
+    } else {
+        success = NO;
+        error = unarchiveError;
+        steps = nil;
+    }
+
+    self.steps = steps;
+    if (outError) {
+        *outError = error;
+    }
+    return success;
+}
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError {
-    return [NSKeyedArchiver archivedDataWithRootObject:self.steps];
+    switch (MyDocumentTypeFromMyDocumentTypeName(typeName)) {
+        case MyDocumentTypeBinaryPlist: {
+            return [self archiveDataWithError:outError];
+        } break;
+        case MyDocumentTypeXML: {
+            return [self xmlDataWithError:outError];
+        } break;
+        case MyDocumentTypeUnknown: {
+            NSAssert(NO, @"Trying to save demoMonkey document by document type is unknown.  The document type should have been handled by the DocumentController.  Programmer error!");
+            __builtin_unreachable();
+        } break;
+    }
 }
 
+- (NSData *)xmlDataWithError:(NSError **)outError
+{
+    NSArray *stepElements = ^{
+        NSMutableArray *mutableResult = [[NSMutableArray alloc] init];
+        
+        for (Step *step in self.steps) {
+            [mutableResult addObject:step.XMLElement];
+        }
+        
+        return [mutableResult copy];
+    }();
+    
+    NSXMLElement *root = [NSXMLElement elementWithName:@"demoMonkey"
+                                              children:stepElements
+                                            attributes:nil];
+    NSXMLDocument *document = [NSXMLDocument documentWithRootElement:root];
+    return [document XMLDataWithOptions:NSXMLNodePrettyPrint];
+}
+
+- (NSData *)archiveDataWithError:(NSError **)outError
+{
+    return [NSKeyedArchiver archivedDataWithRootObject:self.steps];
+}
 
 #pragma mark -
 #pragma mark Managing window controllers
@@ -209,15 +340,11 @@
 #pragma mark -
 #pragma mark Object lifecycle
 
-- (instancetype) init {
+- (instancetype)init {
     if (self = [super init]) {
         _steps = [[NSMutableArray alloc] init];
     }
     return self;    
 }
-
-
-
-
 
 @end

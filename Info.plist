@@ -15,22 +15,50 @@
 			<string></string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
-				<string>text/xml</string>
+				<string>application/x-plist</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>XML</string>
+			<string>DemoMonkey Archive</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>????</string>
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.bignerdranch.demomonkey.property-list</string>
+			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
 			<string>MyDocument</string>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>XML</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>demoMonkey</string>
+			</array>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>text/xml</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>DemoMonkey XML</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>????</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.bignerdranch.demomonkey.xml</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>MyDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -154,6 +182,68 @@
 			<array>
 				<string>public.plain-text</string>
 			</array>
+		</dict>
+	</array>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array/>
+			<key>UTTypeDescription</key>
+			<string>DemoMonkey File</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.bignerdranch.demomonkey.file</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>demoMonkey</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+                <string>com.bignerdranch.demomonkey.file</string>
+				<string>com.apple.property-list</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>DemoMonkey Archive</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.bignerdranch.demomonkey.property-list</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>demoMonkey</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/x-plist</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+                <string>com.bignerdranch.demomonkey.file</string>
+				<string>public.xml</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>DemoMonkey XML</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.bignerdranch.demomonkey.xml</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>demoMonkey</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/xml</string>
+				</array>
+			</dict>
 		</dict>
 	</array>
 </dict>
