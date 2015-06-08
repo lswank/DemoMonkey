@@ -12,7 +12,7 @@ extern NSString * BNR_NONNULL const StepXMLAdditionsKeyStep;
 
 @interface Step (XMLAdditions)
 
-- (BNR_NONNULL NSXMLElement *)XMLElement;
-- (BNR_NULLABLE Step *)initWithXMLElement:(BNR_NONNULL NSXMLElement *)element;
+- (NSXMLElement * BNR_NONNULL)XMLElement;
+- (Step * BNR_NULLABLE)initWithXMLElement:(NSXMLElement * BNR_NONNULL)element;
 
 @end
