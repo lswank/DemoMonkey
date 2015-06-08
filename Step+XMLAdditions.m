@@ -16,7 +16,7 @@ static NSString * BNR_NONNULL const StepXMLAdditionsKeyTooltip = @"tooltip";
 
 @implementation Step (XMLAdditions)
 
-- (BNR_NONNULL NSXMLElement *)XMLElement {
+- (NSXMLElement * BNR_NONNULL)XMLElement {
     NSXMLElement *theTableSummaryElement = [NSXMLElement elementWithName:StepXMLAdditionsKeyTableSummary
                                                              stringValue:self.tableSummary];
     NSXMLNode *bodyText = [[NSXMLNode alloc] initWithKind:NSXMLTextKind options:NSXMLNodeIsCDATA];
@@ -32,7 +32,7 @@ static NSString * BNR_NONNULL const StepXMLAdditionsKeyTooltip = @"tooltip";
     return result;
 }
 
-- (BNR_NULLABLE Step *)initWithXMLElement:(BNR_NONNULL NSXMLElement *)element {
+- (Step * BNR_NULLABLE)initWithXMLElement:(NSXMLElement * BNR_NONNULL)element {
     self = [super init];
     if (self) {
         NSXMLElement *tableSummaryElement = [element elementsForName:StepXMLAdditionsKeyTableSummary].firstObject;
