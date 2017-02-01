@@ -64,7 +64,7 @@
 	<key>CFBundleExecutable</key>
 	<string>DemoMonkey</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.apple.DemoMonkey</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>CFBundlePackageType</key>
@@ -204,7 +204,7 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-                <string>com.bignerdranch.demomonkey.file</string>
+				<string>com.bignerdranch.demomonkey.file</string>
 				<string>com.apple.property-list</string>
 			</array>
 			<key>UTTypeDescription</key>
@@ -226,7 +226,7 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-                <string>com.bignerdranch.demomonkey.file</string>
+				<string>com.bignerdranch.demomonkey.file</string>
 				<string>public.xml</string>
 			</array>
 			<key>UTTypeDescription</key>
